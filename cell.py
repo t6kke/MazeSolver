@@ -29,3 +29,14 @@ class Cell:
         if self.has_bottom_wall:
             bottom_line = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
             self._win.draw_line(bottom_line)
+    
+    def draw_move(self, to_cell, undo=False):
+        half_length = abs(self._x2 - self._x1) // 2
+        half_height = abs(self._y2 - self._y1) // 2
+        line_color = ""
+        if undo == False:
+            line_color = "red"
+        else:
+            line_color = "gray"
+        line = Line(Point(self._x1+half_length, self._y1+half_height), Point(to_cell._x1+half_length, to_cell._y1+half_height))
+        self._win.draw_line(line, line_color)
