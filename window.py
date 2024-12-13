@@ -18,7 +18,7 @@ class Window:
         while self.__isRunning:
             self.redraw()
 
-    def draw_line(self, line, fill_color):
+    def draw_line(self, line, fill_color="black"):
         line.draw(self.__canvas, fill_color)
 
     def close(self):
