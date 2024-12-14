@@ -54,4 +54,8 @@ def test_draw_maze(win):
     #maze = Maze(10, 10, 10, 10, 60, 40, win)
     #maze = Maze(10, 10, 100, 100, 5, 5, win)
 
+    #num_cols = 12
+    #num_rows = 10
+    #m1 = Maze(0, 0, num_rows, num_cols, 10, 10, win)
+
 main()
