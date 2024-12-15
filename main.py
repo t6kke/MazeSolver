@@ -50,7 +50,8 @@ def test_draw_linebetweenboxes(win):
     cell_03.draw_move(cell_04, undo=True)
 
 def test_draw_maze(win):
-    maze = Maze(10, 10, 10, 15, 50, 50, win)
+    maze = Maze(10, 10, 4, 5, 50, 50, win)
+    #maze = Maze(10, 10, 10, 15, 50, 50, win)
     #maze = Maze(10, 10, 10, 10, 60, 40, win)
     #maze = Maze(10, 10, 100, 100, 5, 5, win)
 
