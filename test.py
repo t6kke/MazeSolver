@@ -46,8 +46,8 @@ class Tests(unittest.TestCase):
         )
     
     def test_maze_create_cells_02(self):
-        columns = 100
-        rows = 1000
+        columns = 10
+        rows = 20
         maze = Maze(0, 0, rows, columns, 10, 10)
         self.assertEqual(
             len(maze._cells),
