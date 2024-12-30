@@ -21,6 +21,7 @@ class Maze:
         #self._break_walls_r(0,0)
         self._reset_cells_visited()
         
+    
 
     def _create_cells(self):
         for i in range(self.num_cols):
@@ -120,3 +121,42 @@ class Maze:
             return
         self._win.redraw()
         time.sleep(0.05)
+
+    def solve(self):
+        return self._solver_r(0,0)
+
+    def _solver_r(self, i, j):
+        #print("Im at cell:",i,j, " ---- my walls: ", self._cells[i][j].has_top_wall, self._cells[i][j].has_right_wall, self._cells[i][j].has_bottom_wall, self._cells[i][j].has_left_wall)
+        self._animate()
+        self._cells[i][j].visited = True
+        if self._cells[i][j] == self._cells[self.num_cols-1][self.num_rows-1]:
+            return True
+        if self._cells[i][max(0,j-1)].visited == False and self._cells[i][j].has_top_wall == False: #top
+            #print("top open")
+            self._cells[i][j].draw_move(self._cells[i][max(0,j-1)])
+            if self._solver_r(i, max(0,j-1)):
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i][max(0,j-1)],undo=True)
+        if self._cells[min(self.num_cols-1,i+1)][j].visited == False and self._cells[i][j].has_right_wall == False: #right
+            #print("right open")
+            self._cells[i][j].draw_move(self._cells[min(self.num_cols-1,i+1)][j])
+            if self._solver_r(min(self.num_cols-1,i+1), j):
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[min(self.num_cols-1,i+1)][j],undo=True)
+        if self._cells[i][min(self.num_rows-1,j+1)].visited == False and self._cells[i][j].has_bottom_wall == False: #bottom
+            #print("bottom open")
+            self._cells[i][j].draw_move(self._cells[i][min(self.num_rows-1,j+1)])
+            if self._solver_r(i, min(self.num_rows-1,j+1)):
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[i][min(self.num_rows-1,j+1)],undo=True)
+        if self._cells[max(0,i-1)][j].visited == False and self._cells[i][j].has_left_wall == False: #left
+            #print("left open")
+            self._cells[i][j].draw_move(self._cells[max(0,i-1)][j])
+            if self._solver_r(max(0,i-1), j):
+                return True
+            else:
+                self._cells[i][j].draw_move(self._cells[max(0,i-1)][j],undo=True)
+        return False
