@@ -57,6 +57,24 @@ class Tests(unittest.TestCase):
             len(maze._cells[0]),
             rows,
         )
+    
+    def test_maze_cells_visited_01(self):
+        columns = 10
+        rows = 20
+        maze = Maze(0, 0, rows, columns, 10, 10)
+        self.assertEqual(
+            maze._cells[0][0].visited, False,
+        )
+    
+    def test_maze_cells_visited_02(self):
+        columns = 10
+        rows = 20
+        maze = Maze(0, 0, rows, columns, 10, 10)
+        for columns in maze._cells:
+            for cell in columns:
+                self.assertEqual(
+                    cell.visited, False,
+                )
 
 if __name__ == "__main__":
     unittest.main()
