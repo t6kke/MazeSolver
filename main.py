@@ -1,8 +1,10 @@
 from window import Window, Line, Point
 from cell import Cell
 from maze import Maze
+import sys
 
 def main():
+    sys.setrecursionlimit(10000)
     win = Window(800, 600)
     #test_draw_line(win)
     #test_draw_boxes(win)
@@ -50,12 +52,14 @@ def test_draw_linebetweenboxes(win):
     cell_03.draw_move(cell_04, undo=True)
 
 def test_draw_maze(win):
-    maze = Maze(10, 10, 4, 5, 50, 50, win)
-    #maze = Maze(10, 10, 11, 15, 50, 50, win)
+    #maze = Maze(10, 10, 4, 5, 50, 50, win)
+    maze = Maze(10, 10, 11, 15, 50, 50, win)
     #maze = Maze(10, 10, 4, 5, 50, 50, win, seed=0)
     #maze = Maze(10, 10, 10, 15, 50, 50, win)
     #maze = Maze(10, 10, 10, 10, 60, 40, win)
     #maze = Maze(10, 10, 100, 100, 5, 5, win)
+
+    maze.solve()
 
     #num_cols = 12
     #num_rows = 10
